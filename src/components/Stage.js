@@ -1,10 +1,12 @@
 import React from 'react';
+import { StyledStaged } from "./styles/StyledStaged";
 import Cell from './Cell';
 
+
 const Stage = ({ stage }) => (
-    <div>
+    <StyledStaged width={stage[0].length} height={stage.length}>
         {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]}/> ))}
-    </div>
+    </StyledStaged>
 )
 
 export default Stage;
