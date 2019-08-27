@@ -23,12 +23,15 @@ export const useStage = (player, resetPlayer) => {
                     }
                 });
             });
-
+            // Then check if we collided 
+            if (player.collided) {
+                resetPlayer();
+            }
             return newStage;
         };
 
         setStage(prev => updateStage(prev));
-    }, [player]); // have to specify them as dependencies because we are using them in the useEffect
+    }, [player, resetPlayer]); // have to specify them as dependencies because we are using them in the useEffect
 
     return [stage, setStage];
 }
