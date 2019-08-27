@@ -28,7 +28,7 @@ export const useStage = (player, resetPlayer) => {
         };
 
         setStage(prev => updateStage(prev));
-    }, [player.collided, player.pos.x, player.pos.y, player.tetromino]); // have to specify them as dependencies because we are using them in the useEffect
+    }, [player]); // have to specify them as dependencies because we are using them in the useEffect
 
     return [stage, setStage];
 }
