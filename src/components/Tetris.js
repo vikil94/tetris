@@ -6,6 +6,7 @@ import { createStage, checkCollision } from '../gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 
 // Custom Hooks
+import { useInterval } from '../hooks/useInterval'
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
 
@@ -33,6 +34,7 @@ const Tetris = () => {
         console.log('Test')
         // Reset everything
         setStage(createStage());
+        setDropTime(1000);
         resetPlayer();
         setGameOver(false);
     };
@@ -68,6 +70,11 @@ const Tetris = () => {
             }
         }
     };
+
+    // this will drop the tetromino without having to continuously hit the down button, it will drop one row every second
+    useInterval(() => {
+        drop();
+    }, dropTime);
 
     return (
         <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown= {e => move(e)}>
