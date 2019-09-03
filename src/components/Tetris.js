@@ -53,7 +53,18 @@ const Tetris = () => {
         }
     };
 
+    const keyUp = ({ keyCode }) => {
+        if(!gameOver) {
+            if (keyCode === 40) {
+                setDropTime(1000);
+                console.log("interval on");
+            }
+        }
+    }
+
     const dropPlayer = () => {
+        console.log("Interval Off");
+        setDropTime(null) // stops the interval when the player moves side to side
         drop();
     };
 
@@ -77,7 +88,7 @@ const Tetris = () => {
     }, dropTime);
 
     return (
-        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown= {e => move(e)}>
+        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
             <StyledTetris>
                 <Stage stage={stage} />
                 <aside>
